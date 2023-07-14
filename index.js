@@ -5,6 +5,9 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const productRoute = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoutes')
+
+mongoose.set('strictQuery', false)
+
 mongoose.connect('mongodb+srv://pdhakal906:moles900@cluster0.mp5chzg.mongodb.net/Shopy').then((result) => {
   app.listen(5000);
 }).catch((err) => {

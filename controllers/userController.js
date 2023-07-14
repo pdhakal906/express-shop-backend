@@ -27,7 +27,8 @@ module.exports.userLogin = async (req, res) => {
           email,
           token,
           shippingAddress: userExist.shippingAddress,
-          fullname: userExist.fullname
+          fullname: userExist.fullname,
+          isAdmin: userExist.isAdmin
         })
       } else {
         return res.status(404).json({
