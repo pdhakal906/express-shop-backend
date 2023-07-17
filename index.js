@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const productRoute = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoutes')
+const fileUpload = require('express-fileupload');
 
 mongoose.set('strictQuery', false)
 
@@ -15,7 +16,11 @@ mongoose.connect('mongodb+srv://pdhakal906:moles900@cluster0.mp5chzg.mongodb.net
 })
 
 
-
+app.use(fileUpload({
+  limits: { fileSize: 50 * 1024 * 1024 },
+  abortOnLimit: true,
+  createParentPath: true
+}));
 
 app.use(cors());
 app.use(morgan('dev'));
