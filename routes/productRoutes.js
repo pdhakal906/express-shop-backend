@@ -8,8 +8,9 @@ const userCheck = require('../middleware/userCheck');
 
 router.get('/', productController.getAllProducts);
 router.get('/api/product/:id', productController.getAllProducts);
-router.post('/api/add/product', fileCheck.fileCheck, userCheck.userCheck, productController.addProduct);
-router.delete('/api/remove/product/:id', userCheck.userCheck, productController.removeProduct);
+router.post('/api/add/product', userCheck.adminCheck, fileCheck.fileCheck, productController.addProduct);
+router.patch('/api/update/product/:id', userCheck.adminCheck, fileCheck.updateFileCheck, productController.updateProduct);
+router.delete('/api/remove/product/:id', userCheck.adminCheck, productController.removeProduct);
 
 
 

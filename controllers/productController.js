@@ -27,29 +27,80 @@ module.exports.addProduct = async (req, res) => {
   } = req.body;
   try {
 
-    if (req.isAdmin) {
-      await Product.create({
+
+    await Product.create({
+      product_name,
+      product_detail,
+      product_price,
+      product_image: imagePath,
+      brand,
+      category,
+      countInStock
+    });
+
+    return res.status(201).json({
+      status: 'success',
+      message: "product added succesfully"
+    });
+
+
+
+  } catch (err) {
+    return res.status(400).json({
+      status: 'error',
+      message: `${err}`
+    });
+  }
+
+
+
+}
+
+
+module.exports.updateProduct = async (req, res) => {
+  const { id } = req.params;
+
+  const {
+    product_name,
+    product_detail,
+    product_price,
+    brand,
+    category,
+    countInStock
+  } = req.body;
+  try {
+
+
+
+    if (req.newImagePath) {
+
+      await Product.findByIdAndUpdate({ _id: id }, {
         product_name,
         product_detail,
         product_price,
-        product_image: imagePath,
+        product_image: req.newImagePath,
         brand,
         category,
         countInStock
       });
 
-      return res.status(201).json({
-        status: 'success',
-        message: "product added succesfully"
+    } else {
+      await Product.findByIdAndUpdate({ _id: id }, {
+        product_name,
+        product_detail,
+        product_price,
+        brand,
+        category,
+        countInStock
       });
 
-    } else {
-      return res.status(401).json({
-        status: 'error',
-        message: "you are not admin"
-      });
+
     }
 
+    return res.status(200).json({
+      status: 'success',
+      message: "product updated succesfully"
+    });
   } catch (err) {
     return res.status(400).json({
       status: 'error',
@@ -64,6 +115,10 @@ module.exports.addProduct = async (req, res) => {
 
 
 
+
+
+
+
 module.exports.removeProduct = async (req, res) => {
   const { imagePath } = req.query;
   const { id } = req.params;
@@ -71,21 +126,16 @@ module.exports.removeProduct = async (req, res) => {
   try {
 
 
-    if (req.isAdmin) {
-      await Product.findByIdAndDelete({ _id: id });
-      fs.unlink(`.${imagePath}`, (err) => {
-      })
-      return res.status(201).json({
-        status: 'success',
-        message: "product removed succesfully"
-      });
 
-    } else {
-      return res.status(401).json({
-        status: 'error',
-        message: "you are not admin"
-      });
-    }
+    await Product.findByIdAndDelete({ _id: id });
+    fs.unlink(`.${imagePath}`, (err) => {
+    })
+    return res.status(201).json({
+      status: 'success',
+      message: "product removed succesfully"
+    });
+
+
 
 
   } catch (err) {
