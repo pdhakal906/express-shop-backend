@@ -7,13 +7,13 @@ const fs = require('fs');
 module.exports.fileCheck = (req, res, next) => {
 
 
-  if (!req.files?.image) {
+  if (!req.files?.product_image) {
     return res.status(400).json({
       status: 'error',
       message: 'send a valid image'
     });
   } else {
-    const file = req.files.image;
+    const file = req.files.product_image;
     const exts = ['.jpg', '.png', '.jpeg'];
     const filePath = path.extname(file.name);
     if (exts.includes(filePath)) {
@@ -37,7 +37,7 @@ module.exports.fileCheck = (req, res, next) => {
 module.exports.updateFileCheck = (req, res, next) => {
 
 
-  if (!req.files?.image) {
+  if (!req.files?.product_image) {
     next();
   } else {
     const oldImagePath = req.query.imagePath;
@@ -47,7 +47,7 @@ module.exports.updateFileCheck = (req, res, next) => {
       console.log(err)
     })
 
-    const file = req.files.image;
+    const file = req.files.product_image;
     const exts = ['.jpg', '.png', '.jpeg'];
     const filePath = path.extname(file.name);
     if (exts.includes(filePath)) {
