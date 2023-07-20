@@ -22,6 +22,8 @@ app.use(fileUpload({
   createParentPath: true
 }));
 
+app.use('/uploads', express.static('uploads'))
+
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
