@@ -3,8 +3,9 @@ const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const productRoute = require('./routes/productRoutes');
-const userRoutes = require('./routes/userRoutes')
+const productRoutes = require('./routes/productRoutes');
+const userRoutes = require('./routes/userRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 const fileUpload = require('express-fileupload');
 
 mongoose.set('strictQuery', false)
@@ -28,7 +29,8 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(userRoutes);
-app.use(productRoute);
+app.use(productRoutes);
+app.use(orderRoutes)
 // app.get('/', (req, res) => {
 //   // return res.sendFile("./view/home.html", { root: __dirname })
 //   // return res.status(200).json({

@@ -88,3 +88,46 @@ module.exports.userRegister = async (req, res) => {
     })
   }
 }
+
+
+module.exports.userUpdate = async (req, res) => {
+  const id = req.userId;
+
+
+  try {
+    const userExist = await User.findById(id);
+
+
+    if (!userExist) {
+      return res.status(404).json({
+        status: 'error',
+        message: "user doesn't exist"
+      });
+    } else {
+
+      userExist.fullname = req.body.fullname || userExist.fullname;
+      userExist.email = req.body.email || userExist.email;
+      userExist.shippingAddress = req.body.shippingAddress || userExist.shippingAddress;
+
+      userExist.save();
+
+      return res.status(201).json({
+        status: 'success',
+        message: "successfully updated"
+      });
+
+
+
+    }
+
+
+
+  } catch (err) {
+    return res.status(400).json({
+      status: 400,
+      message: `${err}`
+    });
+  }
+
+
+}

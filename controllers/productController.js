@@ -9,6 +9,7 @@ module.exports.getAllProducts = async (req, res) => {
 
   try {
     const response = await Product.find();
+
     return res.status(200).json(response)
   } catch (err) {
     return res.status(400).json({
@@ -152,6 +153,7 @@ module.exports.updateProduct = async (req, res) => {
 
 module.exports.removeProduct = async (req, res) => {
   const { imagePath } = req.query;
+
   const { id } = req.params;
 
   try {
