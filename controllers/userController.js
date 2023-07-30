@@ -131,3 +131,34 @@ module.exports.userUpdate = async (req, res) => {
 
 
 }
+
+module.exports.userProfile = async (req, res) => {
+  const id = req.userId;
+
+
+  try {
+    const userExist = await User.findById(id);
+
+
+    if (!userExist) {
+      return res.status(404).json({
+        status: 'error',
+        message: "user doesn't exist"
+      });
+    } else {
+
+      return res.status(200).json(userExist);
+    }
+
+
+
+  } catch (err) {
+    return res.status(400).json({
+      status: 400,
+      message: `${err}`
+    });
+  }
+
+
+}
+

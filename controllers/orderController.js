@@ -47,15 +47,15 @@ module.exports.getOrderById = async (req, res) => {
 
 
 module.exports.getOrderByUser = async (req, res) => {
-  const { id } = req.params;
+
   try {
-    if (!mongoose.isValidObjectId(id)) {
+    if (!mongoose.isValidObjectId(req.userId)) {
       return res.status(400).json({
         status: 'error',
         message: 'please provide valid id'
       });
     } else {
-      const response = await Order.findById(id);
+      const response = await Order.find({ user: req.userId });
       return res.status(200).json(response)
     }
 

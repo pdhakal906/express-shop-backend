@@ -16,5 +16,6 @@ const loginSchema = Joi.object({
 router.post('/api/userLogin', validator.body(loginSchema), userController.userLogin);
 router.post('/api/userSignup', userController.userRegister);
 router.patch('/api/userUpdate', userCheck.userCheck, userController.userUpdate);
+router.get('/api/getUserProfile', userCheck.userCheck, userController.userProfile);
 
 module.exports = router;
