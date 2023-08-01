@@ -11,6 +11,7 @@ router.get('/api/product/:id', productController.getProductById);
 router.post('/api/add/product', userCheck.adminCheck, fileCheck.fileCheck, productController.addProduct);
 router.patch('/api/update/product/:id', userCheck.adminCheck, fileCheck.updateFileCheck, productController.updateProduct);
 router.delete('/api/remove/product/:id', userCheck.adminCheck, productController.removeProduct);
+router.patch('/api/add/review/:id', userCheck.userCheck, productController.addReview);
 
 
 
