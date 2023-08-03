@@ -8,6 +8,7 @@ module.exports.getAllOrders = async (req, res) => {
   //console.log(req.query);
   try {
     const response = await Order.find();
+
     return res.status(200).json(response);
   } catch (err) {
     console.log(err);

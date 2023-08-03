@@ -17,5 +17,5 @@ router.post('/api/userLogin', validator.body(loginSchema), userController.userLo
 router.post('/api/userSignup', userController.userRegister);
 router.patch('/api/userUpdate', userCheck.userCheck, userController.userUpdate);
 router.get('/api/getUserProfile', userCheck.userCheck, userController.userProfile);
-
+router.get('/api/allUsers', userCheck.adminCheck, userController.getAllUsers);
 module.exports = router;
