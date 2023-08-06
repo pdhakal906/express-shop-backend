@@ -152,9 +152,10 @@ module.exports.updateProduct = async (req, res) => {
 
 
 module.exports.removeProduct = async (req, res) => {
-  const { imagePath } = req.query;
 
   const { id } = req.params;
+  const imagePath = req.query.imagePath;
+  // const { imagePath } = req.query;
 
   try {
 
