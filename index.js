@@ -43,7 +43,7 @@ app.use(orderRoutes)
 //   return res.sendFile('./view/about.html', { root: __dirname })
 // })
 
-
+//If no previous route handles a request, this middleware sends a JSON response with a "not found" message and a 404 status code.
 app.use((req, res) => {
   return res.status(404).json({
     message: 'not found'
