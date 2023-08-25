@@ -8,6 +8,7 @@ const userRoutes = require('./routes/userRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const fileUpload = require('express-fileupload');
 
+//allows lilent querying
 mongoose.set('strictQuery', false)
 
 mongoose.connect('mongodb+srv://pdhakal906:moles900@cluster0.mp5chzg.mongodb.net/Shopy').then((result) => {
@@ -28,6 +29,8 @@ app.use('/uploads', express.static('uploads'))
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
+//urlencoded is used for form data
+//app.use(express.urlencoded({ extended: true }));
 app.use(userRoutes);
 app.use(productRoutes);
 app.use(orderRoutes)
