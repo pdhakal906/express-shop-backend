@@ -11,7 +11,7 @@ const fileUpload = require('express-fileupload');
 //allows lilent querying
 mongoose.set('strictQuery', false)
 
-mongoose.connect('mongodb+srv://pdhakal906:moles900@cluster0.mp5chzg.mongodb.net/Shopy').then((result) => {
+mongoose.connect('mongodb+srv://uname:pwd@cluster0.mp5chzg.mongodb.net/Shopy').then((result) => {
   app.listen(5000);
 }).catch((err) => {
   console.log(err)
